@@ -1,0 +1,26 @@
+.img-holder{
+    height: 220px;
+    padding: 10px;
+}
+
+.product-img{
+    height: 100%;   
+    object-fit: contain;
+}
+
+.product-title{
+    height: 80px;
+}
+
+.img-holder.detail{
+    height: 500px;
+}
+
+.cart-btn{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+}
