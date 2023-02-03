@@ -10,6 +10,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import ProductCard from '../components/ProductCard';
+import { postCartThunk } from '../store/slices/cart.slice';
 
 const Product = () => {
 
@@ -27,15 +28,20 @@ const Product = () => {
     }
 
     const modQuant = (btn) => {
+        const act = Number(quant)
         if(btn === 'add'){
-            setQuant(quant + 1)
+            setQuant(act + 1)
         }else if(btn === 'remove' && quant > 1){
-            setQuant(quant - 1)
+            setQuant(act - 1)
         }
     }
 
     const addCart = () => {
-        alert(`Added ${quant} units of product ${id}`)
+        const body = {
+            quantity: quant,
+            productId: id
+        }
+        dispatch(postCartThunk(body))
     }
 
     const apiRequest = () => {
@@ -53,7 +59,7 @@ const Product = () => {
 
     return (
         <div>
-            <Row style={{height:'500px'}}>
+            <Row className='mb-4'>
                 <Col lg={5}>
                     <Carousel variant='dark' activeIndex={index} onSelect={handleSelect} >
                         <Carousel.Item>
@@ -94,14 +100,15 @@ const Product = () => {
                             <small className='text-muted'>Quantity:</small>
                             <InputGroup>
                                 <Button variant="outline-secondary" id="button-addon21" onClick={() => modQuant('remove')}>
-                                    <i class='bx bx-minus'></i>
+                                    <i className='bx bx-minus'></i>
                                 </Button>
-                                <Form.Control className='text-end'
+                                <Form.Control className='text-center'
                                     value={quant}
+                                    onChange={e => setQuant(e.target.value)}
                                     aria-label="Text input with 2 buttons" />
                                 <Button variant="outline-secondary" id="button-addon22"
                                 align="end" onClick={() => modQuant('add')}>
-                                    <i class='bx bx-plus'></i>
+                                    <i className='bx bx-plus'></i>
                                 </Button>
                             </InputGroup>
                         </Col>
@@ -115,7 +122,7 @@ const Product = () => {
                     </Row>
                 </Col>
             </Row>
-            <Row className='mt-5 pt-5 overflow-auto'>
+            <Row className='pt-5 overflow-auto'>
                     {
                         relatedList.map(product => {
                             if (product.id !== Number(id)) {

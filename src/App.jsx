@@ -4,6 +4,7 @@ import Container from 'react-bootstrap/Container';
 
 import AppNavbar from './components/AppNavbar'
 import LoadingScreen from './components/LoadingScreen'
+import ProtectedRoutes from './components/ProtectedRoutes'
 import Home from './pages/Home'
 import Product from './pages/Product'
 import Purchases from './pages/Purchases'
@@ -21,10 +22,13 @@ function App() {
       { isLoading && <LoadingScreen /> }
       <Container className='my-5'>
         <Routes>
-          <Route path='/' element={<Home />}></Route>
-          <Route path='/product/:id' element={<Product />}></Route>
-          <Route path='/purchases' element={<Purchases />}></Route>
-          <Route path='/login' element={<Login />}></Route>
+          <Route path='/' element={<Home />} />
+          <Route path='/product/:id' element={<Product />} />
+          <Route path='/login' element={<Login />} />
+          
+          <Route element={<ProtectedRoutes />}>
+            <Route path='/purchases' element={<Purchases />} />
+          </Route>
         </Routes>
       </Container>
     </HashRouter>

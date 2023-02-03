@@ -2,12 +2,23 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { postCartThunk } from '../store/slices/cart.slice';
 
 const ProductCard = ( {product} ) => {
 
     const navigate = useNavigate()
+    const dispatch = useDispatch()
 
     const { id, title, price, images } = product
+
+    const addCart = () => {
+        const body = {
+            quantity: 1,
+            productId: id
+        }
+        dispatch(postCartThunk(body))
+    }
 
     return (
         <div>
@@ -24,7 +35,7 @@ const ProductCard = ( {product} ) => {
                         </Card.Text>
                     </Card.Body>
                 </div>
-                    <Button variant="primary" onClick={() => alert('Added')}><i className='bx bx-plus'></i> Add to Cart</Button>
+                    <Button variant="primary" onClick={() => addCart()}><i className='bx bx-plus'></i> Add to Cart</Button>
             </Card>
         </div>
     );
