@@ -16,7 +16,7 @@ const PurchaseCard = ( {purchase} ) => {
 
     return (
         <div>
-            <Card className='mb-4'onClick={() => navigate(`/product/${purchase.product.id}`)}>
+            <Card className='mb-4'onClick={() => navigate(`/product/${productId}`)}>
                 <Card.Header>Purchased: {createdAt.substr(0,10)}</Card.Header>
                 <Card.Body>
                     <Row>

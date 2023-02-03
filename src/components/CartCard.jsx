@@ -48,7 +48,7 @@ const CartCard = ({ element, handleClose }) => {
         <div className='mb-3'>
             <Row style={{ height: '100px' }}>
                 <Col sm={3} style={{ height: '100px' }}>
-                    
+                    <Image src={url} className='product-img'></Image>
                 </Col>
                 <Col sm={7}>
                     <Row className='h-75'>
