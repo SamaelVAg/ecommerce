@@ -16,7 +16,7 @@ const CartCard = ({ element, handleClose }) => {
     const navigate = useNavigate()
 
     const { id: cartId, quantity, product } = element
-    const { id: productId, price, title, images: [, , { url }] } = product
+    const { id: productId, price, title, images: [{ url }] } = product
 
     const [quant, setQuant] = useState(Number(quantity))
 

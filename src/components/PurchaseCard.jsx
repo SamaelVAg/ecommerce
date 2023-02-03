@@ -10,7 +10,7 @@ const PurchaseCard = ( {purchase} ) => {
     const navigate = useNavigate()
 
     const {createdAt, productId, quantity, product} = purchase
-    const {title, price, images:[ , , {url}] } = product
+    const {title, price, images:[{url}] } = product
 
     console.log(purchase)
 
